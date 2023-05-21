@@ -1,0 +1,17 @@
+CREATE STREAM PRODUCT_MONITOR
+WITH (
+        KAFKA_TOPIC='PRODUCT_MONITOR',
+        PARTITIONS=1,
+        REPLICAS=1,
+        VALUE_AVRO_SCHEMA_FULL_NAME='nz.co.goodspeed.model.Product'
+     )
+AS SELECT
+    p.`source_system_id` as `source_system_id`,
+    `description` as `product_description`,
+    `price` as `product_price`,
+    ID.`product_sync_hive_id` as `sync_hive_id`,
+    ID.`product_id` as `merged_identity`
+FROM PRODUCTS P
+LEFT OUTER JOIN TBL_PRODUCT_ID ID ON
+((ID.`product_id` = ('monitor::' + p.`source_system_id`)))
+EMIT CHANGES;

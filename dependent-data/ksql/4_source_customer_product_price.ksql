@@ -1,0 +1,16 @@
+CREATE STREAM SOURCE_CUSTOMER_PRODUCT_PRICE
+(
+    `source_system_customer_id` string,
+    `source_system_product_id` string,
+    `source_system_name` string,
+    `price` string
+)
+WITH
+(
+    KAFKA_TOPIC='customer_product_price',
+    KEY_FORMAT='KAFKA',
+    VALUE_FORMAT='AVRO',
+    PARTITIONS=1,
+    REPLICAS=1,
+    VALUE_AVRO_SCHEMA_FULL_NAME='nz.co.goodspeed.model.CustomerProductPrice'
+);

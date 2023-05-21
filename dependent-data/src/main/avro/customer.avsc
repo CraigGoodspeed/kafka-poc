@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Customer",
+  "namespace": "nz.co.goodspeed.model",
+  "fields": [
+    {"name": "source_system_id", "type": ["null","string"], "default": null},
+    {"name": "sync_hive_id", "type": ["null","string"], "default": null},
+    {"name": "customer_name", "type": ["null","string"], "default": null},
+    {"name": "phone", "type": ["null","string"], "default": null}
+  ]
+}

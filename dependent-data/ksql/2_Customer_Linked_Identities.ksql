@@ -1,0 +1,47 @@
+DROP STREAM IF EXISTS CUSTOMER_LINKED_IDENTITIES;
+CREATE STREAM CUSTOMER_LINKED_IDENTITIES
+(
+    `sync_hive_id` STRING key,
+    `system_name` STRING,
+    `source_system_id` STRING
+)
+WITH
+(
+    KAFKA_TOPIC='customer_linked_identities',
+    KEY_FORMAT='KAFKA',
+    PARTITIONS=1,
+    replicas=1,
+    VALUE_FORMAT='AVRO'
+);
+DROP STREAM IF EXISTS CUSTOMER_PARTITIONER_LINKED_ID;
+CREATE STREAM CUSTOMER_PARTITIONER_LINKED_ID
+WITH
+(
+        KAFKA_TOPIC='customer_joiner',
+        PARTITIONS=1,
+        REPLICAS=1,
+        KEY_FORMAT='KAFKA',
+        VALUE_FORMAT='AVRO'
+)
+AS
+SELECT
+    `system_name` + '::'+`source_system_id` as `customer_identity`,
+    `sync_hive_id` as `sync_hive_id`
+   from CUSTOMER_LINKED_IDENTITIES
+   PARTITION BY `system_name` + '::'+`source_system_id`
+
+EMIT CHANGES;
+DROP TABLE IF EXISTS TBL_CUSTOMER_ID;
+
+
+CREATE TABLE TBL_CUSTOMER_ID
+(
+    `customer_identity` STRING PRIMARY KEY,
+    `sync_hive_id` STRING
+)
+WITH
+(
+    KAFKA_TOPIC='customer_joiner',
+    KEY_FORMAT='KAFKA',
+    VALUE_FORMAT='AVRO'
+);

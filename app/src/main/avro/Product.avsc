@@ -1,0 +1,28 @@
+{
+  "namespace": "nz.co.goodspeed.model",
+  "type": "record",
+  "name": "Product",
+  "fields": [
+    {"name": "source_system_id",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "product_description",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "product_price",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "sync_hive_id",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "merged_identity",
+      "type": ["null","string"],
+      "default": null
+    }
+
+  ]
+}

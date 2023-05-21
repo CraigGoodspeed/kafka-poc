@@ -1,0 +1,9 @@
+{
+  "namespace": "nz.co.goodspeed.model",
+  "type": "record",
+  "name": "ProductMonitorLinked",
+  "fields": [
+    {"name": "product_identity", "type": ["null","string"],"default": null},
+    {"name": "product_sync_hive_id", "type": ["null","string"],"default": null}
+  ]
+}

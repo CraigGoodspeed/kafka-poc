@@ -1,0 +1,16 @@
+CREATE STREAM
+    PRODUCT_IDENTITIES
+    (
+        `sync_hive_id` STRING key,
+        `source_system_name` STRING,
+        `source_system_identifier` STRING
+    )
+    WITH
+    (
+        KAFKA_TOPIC='product_linked_identities',
+        KEY_FORMAT='KAFKA',
+        PARTITIONS=1,
+        replicas=1,
+        VALUE_FORMAT='AVRO',
+        VALUE_AVRO_SCHEMA_FULL_NAME='nz.co.goodspeed.model.LinkedIdentities'
+    );

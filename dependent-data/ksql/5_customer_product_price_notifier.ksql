@@ -1,0 +1,15 @@
+SELECT
+
+*
+
+
+FROM SOURCE_CUSTOMER_PRODUCT_PRICE SOURCE_CPP
+
+INNER JOIN
+    TBL_PRODUCT_ID PID ON
+        'monitor::'+SOURCE_CPP.`source_system_product_id` = PID.`product_id`
+INNER JOIN
+    TBL_CUSTOMER_ID CID ON
+        'monitor::'+SOURCE_CPP.`source_system_customer_id` = CID.`customer_identity`
+
+emit changes;

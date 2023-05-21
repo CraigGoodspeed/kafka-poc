@@ -1,0 +1,19 @@
+{
+  "namespace": "nz.co.goodspeed.model",
+  "type": "record",
+  "name": "ProductDebug",
+  "fields": [
+    {"name": "source_system_id",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "description",
+      "type": ["null","string"],
+      "default": null
+    },
+    {"name": "price",
+      "type": ["null","string"],
+      "default": null
+    }
+  ]
+}

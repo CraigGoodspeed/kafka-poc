@@ -1,0 +1,10 @@
+{
+  "namespace": "nz.co.goodspeed.model",
+  "type": "record",
+  "name": "LinkedIdentity",
+  "fields": [
+    {"name": "sync_hive_id", "type": ["null","string"],"default": null},
+    {"name": "source_system_name", "type": ["null","string"],"default": null},
+    {"name": "source_system_identifier", "type": ["null","string"],"default": null}
+  ]
+}

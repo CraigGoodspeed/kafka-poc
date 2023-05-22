@@ -1,0 +1,50 @@
+{
+  "type": "record",
+  "name": "CustomerProductPrice",
+  "namespace": "nz.co.goodspeed.model",
+  "fields": [
+    {
+      "name": "source_system_customer_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "source_system_product_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "source_system_name",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "price",
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 4,
+        "scale": 4
+      }
+    },
+    {
+      "name": "customer_sync_hive_id",
+      "type": ["null","string"],
+      "default": null
+    },
+    {
+      "name": "product_sync_hive_id",
+      "type": ["null","string"],
+      "default": null
+    }
+  ]
+}

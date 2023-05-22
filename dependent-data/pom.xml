@@ -14,6 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <confluent.version>7.4.0</confluent.version>
         <avro.version>1.11.1</avro.version>
+        <kafka.version>2.6.3</kafka.version>
+        <jackson.version>2.15.1</jackson.version>
     </properties>
 
     <repositories>
@@ -30,6 +32,40 @@
             <url>https://packages.confluent.io/maven/</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>${confluent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>nz.co.goodspeed</groupId>
+            <artifactId>Common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -75,6 +111,9 @@
                     <subjects>
                         <customer-value>./src/main/avro/customer.avsc</customer-value>
                         <customer_price-value>./src/main/avro/customer_price.avsc</customer_price-value>
+                        <CUSTOMERS_LINKED-value>./src/main/avro/customer.avsc</CUSTOMERS_LINKED-value>
+                        <customer_linked_identities-value>./src/main/avro/CustomerLinked.avsc</customer_linked_identities-value>
+                        <monitor_customer_product_price-value>./src/main/avro/customer_product_price_to_kafka.avsc</monitor_customer_product_price-value>
                     </subjects>
                 </configuration>
             </plugin>

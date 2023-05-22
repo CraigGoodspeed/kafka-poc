@@ -3,13 +3,30 @@
   "name": "CustomerPrice",
   "namespace": "nz.co.goodspeed.model",
   "fields": [
-    {"name": "customer_id", "type": ["null","string"], "default": null},
-    {"name": "product_id", "type": ["null","string"], "default": null},
-    {"name": "price","type":
-        ["bytes"],
-      "logicalType": "decimal",
-      "precision": "4",
-      "scale" : "4"
+    {
+      "name": "customer_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "product_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "price",
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 4,
+        "scale": 4
+      }
     }
   ]
 }

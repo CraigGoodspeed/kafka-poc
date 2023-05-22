@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "CustomerLinkedIdentities",
+  "namespace": "nz.co.goodspeed.model",
+  "fields": [
+    {"name": "sync_hive_id", "type": ["null","string"], "default": null},
+    {"name": "system_name", "type": ["null","string"], "default": null},
+    {"name": "source_system_id", "type": ["null","string"], "default": null}
+  ]
+}

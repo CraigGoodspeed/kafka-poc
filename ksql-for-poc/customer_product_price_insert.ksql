@@ -1,4 +1,4 @@
-insert into customers values('1','1','customer','5678');
-insert into customer_linked_identities values('1','monitor','1');
 insert into source_customer_product_price values('1','35','monitor','12');
-insert into source_customer_product_price values('1','5','monitor','12');
+insert into source_customer_product_price values('1','11111','monitor','12');
+insert into source_customer_product_price values('6','35','monitor','12');
+

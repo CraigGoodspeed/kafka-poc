@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class CustomerProducerConsumer {
     public static void main(String[] args) throws IOException {
+        System.setOut(new CustomPrint(System.out));
         startConsumer();
         generateCustomerData();
     }

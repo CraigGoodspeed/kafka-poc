@@ -1,3 +1,4 @@
+DROP STREAM IF EXISTS SOURCE_CUSTOMER_PRODUCT_PRICE;
 CREATE STREAM SOURCE_CUSTOMER_PRODUCT_PRICE
 (
     `source_system_customer_id` string,
@@ -12,5 +13,5 @@ WITH
     VALUE_FORMAT='AVRO',
     PARTITIONS=1,
     REPLICAS=1,
-    VALUE_AVRO_SCHEMA_FULL_NAME='nz.co.goodspeed.model.CustomerProductPrice'
+    VALUE_AVRO_SCHEMA_FULL_NAME='nz.co.goodspeed.model.CustomerPrice'
 );

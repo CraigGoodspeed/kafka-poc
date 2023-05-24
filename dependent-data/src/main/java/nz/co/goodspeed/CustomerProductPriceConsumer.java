@@ -22,6 +22,7 @@ public class CustomerProductPriceConsumer implements Runnable {
                             if(record != null) {
                                 System.out.printf("received key %s on customer product price%n",record.key());
                                 System.out.println(record.value());
+                                System.out.println(record.value().getPrice());
                                 System.out.println("we would normally trigger an event with dependant data.");
                             }
                         }

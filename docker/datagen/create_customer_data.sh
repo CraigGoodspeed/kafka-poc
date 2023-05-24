@@ -1,0 +1,9 @@
+ksql-datagen schema=./customers.avro \
+format=avro \
+topic=CUSTOMERS \
+key=source_system_id \
+bootstrap-server=localhost:29092 \
+value-format=avro \
+iterations=1000 \
+msgRate=100 \
+printRows=true

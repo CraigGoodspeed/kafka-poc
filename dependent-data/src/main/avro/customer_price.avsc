@@ -4,7 +4,7 @@
   "namespace": "nz.co.goodspeed.model",
   "fields": [
     {
-      "name": "customer_id",
+      "name": "source_system_customer_id",
       "type": [
         "null",
         "string"
@@ -12,7 +12,15 @@
       "default": null
     },
     {
-      "name": "product_id",
+      "name": "source_system_product_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "source_system_name",
       "type": [
         "null",
         "string"
@@ -21,12 +29,8 @@
     },
     {
       "name": "price",
-      "type": {
-        "type": "bytes",
-        "logicalType": "decimal",
-        "precision": 4,
-        "scale": 4
-      }
+      "type": ["null","string"],
+      "default": null
     }
   ]
 }

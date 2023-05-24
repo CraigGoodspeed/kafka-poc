@@ -29,12 +29,8 @@
     },
     {
       "name": "price",
-      "type": {
-        "type": "bytes",
-        "logicalType": "decimal",
-        "precision": 4,
-        "scale": 4
-      }
+      "type": ["null","string"],
+      "default": null
     },
     {
       "name": "customer_sync_hive_id",

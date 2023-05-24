@@ -1,3 +1,4 @@
+DROP STREAM IF EXISTS PRODUCTS;
 CREATE STREAM PRODUCTS
 (
     `source_system_id` string key,

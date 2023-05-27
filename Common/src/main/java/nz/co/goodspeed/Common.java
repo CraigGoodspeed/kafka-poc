@@ -1,6 +1,7 @@
 package nz.co.goodspeed;
 
 import java.util.Properties;
+import java.util.UUID;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -28,6 +29,10 @@ public class Common {
     }
 
     public static Properties transactionalProducerProperties() {
+        return transactionalProducerProperties(UUID.randomUUID().toString());
+    }
+
+    public static Properties transactionalProducerProperties(String transactionId) {
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", BOOTSTRAP_SERVERS);
         properties.setProperty("acks", "all");
@@ -37,7 +42,7 @@ public class Common {
         properties.setProperty("value.serializer", KafkaAvroSerializer.class.getName());
         properties.setProperty("schema.registry.url", SCHEMA_REGISTRY_URL);
         properties.setProperty("enable.idempotence","true");
-        properties.setProperty("transactional.id", "linked-identity-1");
+        properties.setProperty("transactional.id", transactionId);
         return properties;
     }
 

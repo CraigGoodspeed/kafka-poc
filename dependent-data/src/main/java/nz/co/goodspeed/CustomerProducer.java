@@ -6,25 +6,26 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.UUID;
 
 public class CustomerProducer {
 
     private static final String[] nameList = new String[]{"fred","bob","benjamin","william","damien"};
     private static final String[] phoneList = new String[]{"0122233123","0213121237","0122546735","12377433","879763424"};
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         generateCustomerData();
     }
 
 
-    public static void generateCustomerData() throws IOException {
-        System.out.printf("press enter to generate 1000 customers");
+    public static void generateCustomerData() throws IOException, InterruptedException {
+        System.out.printf("press enter to generate 100 customers");
         System.in.read();
         produce();
     }
 
-    public static void produce() throws IOException {
-        for (int i = 0; i < 1000; i++) {
-            try (KafkaProducer<String, Customer> producer = new KafkaProducer<>(Common.transactionalProducerProperties())) {
+    public static void produce() throws IOException, InterruptedException {
+        for (int i = 0; i < 100; i++) {
+            try (KafkaProducer<String, Customer> producer = new KafkaProducer<>(Common.transactionalProducerProperties(UUID.randomUUID().toString()))) {
                 producer.initTransactions();
 
                 int id = generateRandom(5);
@@ -41,7 +42,7 @@ public class CustomerProducer {
                 producer.commitTransaction();
                 producer.flush();
             }
-
+            Thread.sleep(300);
         }
         generateCustomerData();
     }

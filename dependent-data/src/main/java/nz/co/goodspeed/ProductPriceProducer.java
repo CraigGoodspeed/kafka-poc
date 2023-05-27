@@ -9,25 +9,26 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
+import java.util.UUID;
 
 import static nz.co.goodspeed.CustomerProducer.generateCustomerData;
 import static nz.co.goodspeed.CustomerProducer.generateRandom;
 
 public class ProductPriceProducer {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         produce();
     }
 
-    private static void produce() throws IOException {
+    private static void produce() throws IOException, InterruptedException {
         System.out.println("press enter to generate 1000 random customer product price values");
         System.in.read();
         generateCustomerProductPrice();
     }
 
 
-    public static void generateCustomerProductPrice() throws IOException {
-        for (int i = 0; i < 1000; i++) {
-            try (KafkaProducer<String, CustomerPrice> producer = new KafkaProducer<>(Common.transactionalProducerProperties())) {
+    public static void generateCustomerProductPrice() throws IOException, InterruptedException {
+        for (int i = 0; i < 100; i++) {
+            try (KafkaProducer<String, CustomerPrice> producer = new KafkaProducer<>(Common.transactionalProducerProperties(UUID.randomUUID().toString()))) {
                 producer.initTransactions();
 
                 int id = generateRandom(5);
@@ -43,7 +44,7 @@ public class ProductPriceProducer {
                 producer.commitTransaction();
                 producer.flush();
             }
-
+            Thread.sleep(300);
         }
         produce();
     }

@@ -31,9 +31,6 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-      KSQL_KSQL_QUERIES_FILE: /app/startup.ksql
-    volumes:
-      - "./ksql-startup:/app"
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.3.0

@@ -40,7 +40,7 @@ public class CustomerConsumer implements Runnable{
     }
 
     private void produceCustomerLinkedId(Customer source, String uuid) {
-        try(KafkaProducer<String, CustomerLinkedIdentities> identityLinker = new KafkaProducer<>(Common.transactionalProducerProperties())) {
+        try(KafkaProducer<String, CustomerLinkedIdentities> identityLinker = new KafkaProducer<>(Common.transactionalProducerProperties(UUID.randomUUID().toString()))) {
             identityLinker.initTransactions();
             identityLinker.beginTransaction();
             identityLinker.send(

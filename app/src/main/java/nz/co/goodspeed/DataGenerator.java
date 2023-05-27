@@ -11,12 +11,12 @@ public class DataGenerator {
 
     private final static String TOPIC_WRITE = "products";
 
-    public static void main(String [] args) throws IOException {
-        System.out.println("press enter to generate 1000 products");
+    public static void main(String [] args) throws IOException, InterruptedException {
+        System.out.println("press enter to generate 100 products");
         System.in.read();
-        for(int i = 0; i < 1000; i ++) {
+        for(int i = 0; i < 100; i ++) {
             try (KafkaProducer<String, ProductDebug> data = new KafkaProducer<>(Common.producerProps())) {
-                String key = String.valueOf(generateRandom(50));
+                String key = String.valueOf(generateRandom(10));
                 data.send(
                         new ProducerRecord<>(
                                 TOPIC_WRITE,
@@ -30,6 +30,7 @@ public class DataGenerator {
                 );
                 data.flush();
             }
+            Thread.sleep(200);
         }
         main(args);
     }

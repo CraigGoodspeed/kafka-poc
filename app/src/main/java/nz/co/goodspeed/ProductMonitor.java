@@ -27,9 +27,6 @@ public class ProductMonitor {
                     final ConsumerRecords<String, Product> records = consumer.poll(Duration.ofMillis(100));
                     for (final ConsumerRecord<String, Product> record : records) {
                         final Product value = record.value();
-                        System.out.println("checking null value;");
-                        System.out.println(record.key());
-
                         if (value != null) {
                             if (value.getSyncHiveId() == null || value.getSyncHiveId().equals("") || value.getSyncHiveId().length() == 0) {
                                 System.out.println("inserting");

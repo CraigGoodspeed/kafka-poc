@@ -1,6 +1,6 @@
 package nz.co.goodspeed;
 
-import nz.co.goodspeed.model.CustomerPrice;
+import nz.co.goodspeed.model.CustomerProductPrice;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
@@ -12,11 +12,11 @@ public class CustomerProductPriceConsumer implements Runnable {
 
     @Override
     public void run() {
-        try(KafkaConsumer<String, CustomerPrice> consumer = new KafkaConsumer<>(Common.buildConsumerProperties("cpp-consumer"))) {
+        try(KafkaConsumer<String, CustomerProductPrice> consumer = new KafkaConsumer<>(Common.buildConsumerProperties("cpp-consumer"))) {
             consumer.subscribe(Collections.singletonList("monitor_customer_product_price"));
             System.out.println("subscribed to customer product price");
             while(true){
-                ConsumerRecords<String, CustomerPrice> data = consumer.poll(Duration.ofMillis(100));
+                ConsumerRecords<String, CustomerProductPrice> data = consumer.poll(Duration.ofMillis(100));
                 data.forEach(
                         record -> {
                             if(record != null) {
